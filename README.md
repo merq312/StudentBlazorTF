@@ -7,7 +7,7 @@
 - SQL Server Express LocalDB (Download SQL Server Express 2019, do a basic installation)
 > https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15
 - Install Entity Framework CLI using your terminal
-> dotnet tool install --global dotnet-ef --version 5.0.0-*
+> dotnet tool install --global dotnet-ef
 
 ---
 
