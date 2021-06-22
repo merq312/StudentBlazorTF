@@ -20,6 +20,7 @@
 2. Enter the folder, and ensure that the app template is functional (visit localhost:5000 on your browser).
 
 > cd StudentBlazorTF
+
 > dotnet run
 
 4. Run these commands in your terminal.
