@@ -6,7 +6,7 @@
 - Visual Studio Code (or any editor)
 - SQL Server Express LocalDB
 > https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15
-- Install Entity Framework CLI
+- Install Entity Framework CLI using your terminal
 > dotnet tool install --global dotnet-ef --version 5.0.0-*
 
 ---
@@ -23,7 +23,7 @@
 
 > dotnet run
 
-4. Run these commands in your terminal.
+4. Run these commands in your terminal while in the root of your project.
 
 > dotnet add package Microsoft.EntityFrameworkCore.Design
 
