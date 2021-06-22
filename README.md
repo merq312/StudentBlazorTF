@@ -1,4 +1,7 @@
-What you need
+# Student Blazor App for STY1001
+
+## What you need
+
 - Latest .NET version
 - Visual Studio Code (or any editor)
 - SQL Server Express LocalDB
@@ -7,6 +10,8 @@ What you need
 > dotnet tool install --global dotnet-ef --version 5.0.0-*
 
 ---
+
+## Instructions
 
 1. Open a terminal window, go to the directory you wish to create the project in, and create a Blazor server app by typing 
 
