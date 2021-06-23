@@ -43,8 +43,7 @@ namespace ServerBlazorEF.Models {
         return student;
       }
 
-      public async Task<Student> DeleteStudentAsync(string id)
-      {
+      public async Task<Student> DeleteStudentAsync(string id) {
         var student = await _context.Students.FindAsync(id);
         
         if (student == null)
