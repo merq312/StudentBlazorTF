@@ -385,6 +385,7 @@ services.AddScoped<StudentService>();
 If you are recreating this app for the second time. Make sure to delete the database files "CollegeDB.mdf" and "CollegeDB_log.ldf" located in your user folder. You will also need the restart the SQL server with the following commands.
 
 > sqllocaldb stop
+
 > sqllocaldb delete
 
 Alternatively, you may simply give the database file a new name. In appsettings.json change the database name to something else.
