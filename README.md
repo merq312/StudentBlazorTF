@@ -39,6 +39,8 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace ServerBlazorEF.Models {
+  // This is the C# class that models the data structure that we are going to create.
+  // We have a variable for each field in the database.
   public class Student {
     public string StudentId { get; set; }
     [Required]
@@ -70,6 +72,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace ServerBlazorEF.Models {
+    // This code, using EntityFrameworkCore and the model we created (Student.cs) will create the database schema.
+    // We populate the database with 4 initial entries, one for each group member.
   public class SchoolDbContext : DbContext {
     public DbSet<Student> Students { get; set; }
 
@@ -115,6 +119,7 @@ namespace ServerBlazorEF.Models {
     }
   }
 }
+
 ```
 
 
@@ -129,6 +134,7 @@ using Microsoft.EntityFrameworkCore;
 8. In the Startup.cs file, add the following code to the function ConfigureServices()
 
 ```
+// Creates the database connection on startup
 services.AddDbContext<SchoolDbContext>(
     option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 ```
@@ -152,6 +158,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace ServerBlazorEF.Models {
+  // This class contains CRUD operations to interface with the SQL database.
+  // We have Get (Read), Insert (Create), Update, and Delete methods in this function.
+  // These methods are asynchronous as performing operations on database is not instantaneous.
   public class StudentService {
       SchoolDbContext _context;
       public StudentService(SchoolDbContext context) {
@@ -191,8 +200,7 @@ namespace ServerBlazorEF.Models {
         return student;
       }
 
-      public async Task<Student> DeleteStudentAsync(string id)
-      {
+      public async Task<Student> DeleteStudentAsync(string id) {
         var student = await _context.Students.FindAsync(id);
         
         if (student == null)
@@ -209,11 +217,13 @@ namespace ServerBlazorEF.Models {
       }
   }
 }
+
 ```
 
 12. Add the following to the ConfigureServices() method in the Startup.cs file.
 
 ```
+// Loads the StudentService class we wrote into the BlazorApp
 services.AddScoped<StudentService>();
 ```
 
@@ -228,6 +238,8 @@ services.AddScoped<StudentService>();
 
 <p>This component demonstrates managing students data.</p>
 
+@* While the database is loading, show loading text. Once it is loaded,
+   display the database entries in an html table. *@
 @if (students == null) {
   <p><em>Loading...</em></p>
 } else {
@@ -244,6 +256,8 @@ services.AddScoped<StudentService>();
       </tr>
     </thead>
     <tbody>
+      @* Iterate over the students list (a type of C# container) using the foreach method.
+         This creates one row in the table for each entry. *@
       @foreach (var item in students) {
         <tr @onclick="(() => Show(item.StudentId))">
           <td>@item.StudentId</td>
@@ -258,6 +272,8 @@ services.AddScoped<StudentService>();
   </table>
 }
 
+@* If the database is loaded and the add button has been pressed (add mode),
+   shows an input form for a new entry. *@
 @if (students != null && mode==MODE.Add) // Insert form 
 {
   <input placeholder="First Name" @bind="@firstName" /><br />
@@ -268,6 +284,8 @@ services.AddScoped<StudentService>();
   <button @onclick="Insert" class="btn btn-warning">Insert</button>
 }
 
+@* If the database is loaded and an entry has been selected,
+   shows an input form with the data from the selected entry prefilled. *@
 @if (students != null && mode==MODE.EditDelete) // Update & Delete form
 {
   <input type="hidden" @bind="@studentId" /><br />
@@ -281,7 +299,9 @@ services.AddScoped<StudentService>();
   <button @onclick="Delete" class="btn btn-danger">Delete</button>
 }
 
+@* The methods and the variables used in the UI. These interface with our database model. *@
 @functions {
+  @* Container for all student entries. *@
   List<Student> students;
   string studentId;
   string firstName;
@@ -290,18 +310,22 @@ services.AddScoped<StudentService>();
   string courseCode;
   string courseTitle;
 
+  @* Enumerator that represents a mode for the page (either None, Add or Edit/Delete)  *@
   private enum MODE { None, Add, EditDelete };
   MODE mode = MODE.None;
   Student student;
 
+  @* Calls the load method when the page loads *@
   protected override async Task OnInitializedAsync() {
     await load();
   }
 
+  @* Gets the list of students from the database (uses StudentService) *@
   protected async Task load() {
     students = await studentService.GetStudentsAsync();
   }
 
+  @* CRUD operations from the UI. Executed when the insert button is clicked. *@
   protected async Task Insert() {
     Student s = new Student() {
       StudentId = Guid.NewGuid().ToString(),
@@ -315,9 +339,12 @@ services.AddScoped<StudentService>();
     await studentService.InsertStudentAsync(s);
     ClearFields();
     await load();
+
+    @* After insertion, resets the mode to None *@
     mode = MODE.None;
   }
 
+  @* Simple method to clear the input form fields. *@
   protected void ClearFields() {
     studentId = string.Empty;
     firstName = string.Empty;
@@ -327,12 +354,16 @@ services.AddScoped<StudentService>();
     courseTitle = string.Empty;
   }
 
+  @* Executed when the user clicks on the Add button. *@
   protected void Add() { 
     ClearFields();
+    @* Sets the mode to Add *@
     mode = MODE.Add;
   }
 
+  @* Executed when an entry is updated (edited) *@
   protected async Task Update() {
+    @* Creates a new student object with the input data. *@
     Student s = new Student() {
       StudentId = studentId,
       FirstName = firstName,
@@ -342,12 +373,14 @@ services.AddScoped<StudentService>();
       CourseTitle = courseTitle
     };
 
+    @* Replaces the entry with the same id with the updated info *@
     await studentService.UpdateStudentAsync(studentId, s);
     ClearFields();
     await load();
     mode = MODE.None;
   }
 
+  @* Executed when the Delete button is clicked. Deletes an entry with the given id *@
   protected async Task Delete() {
     await studentService.DeleteStudentAsync(studentId);
     ClearFields();
@@ -355,6 +388,7 @@ services.AddScoped<StudentService>();
     mode = MODE.None;
   }
 
+  @* Loads a particular entry id from the database. (used to create the table in the UI)*@
   protected async Task Show(string id) {
     student = await studentService.GetStudentByIdAsync(id);
     studentId = student.StudentId;
@@ -366,6 +400,7 @@ services.AddScoped<StudentService>();
     mode = MODE.EditDelete;
   }
 }
+
 ```
 
 14. Add a navlink to the students page. Open NavMenu.razor in the Shared folder. Enter the following code into ul block.

@@ -31,8 +31,11 @@ namespace BlazorStudent
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            // Loads the StudentService class we wrote into the BlazorApp
             services.AddScoped<StudentService>();
 
+            // Creates the database connection on startup
             services.AddDbContext<SchoolDbContext>(
                 option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }

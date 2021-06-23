@@ -2,6 +2,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace ServerBlazorEF.Models {
+    // This code, using EntityFrameworkCore and the model we created (Student.cs) will create the database schema.
+    // We populate the database with 4 initial entries, one for each group member.
   public class SchoolDbContext : DbContext {
     public DbSet<Student> Students { get; set; }
 

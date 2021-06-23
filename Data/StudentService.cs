@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace ServerBlazorEF.Models {
+  // This class contains CRUD operations to interface with the SQL database.
+  // We have Get (Read), Insert (Create), Update, and Delete methods in this function.
+  // These methods are asynchronous as performing operations on database is not instantaneous.
   public class StudentService {
       SchoolDbContext _context;
       public StudentService(SchoolDbContext context) {

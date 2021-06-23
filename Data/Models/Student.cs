@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace ServerBlazorEF.Models {
+  // This is the C# class that models the data structure that we are going to create.
+  // We have a variable for each field in the database.
   public class Student {
     public string StudentId { get; set; }
     [Required]
