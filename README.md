@@ -117,24 +117,33 @@ namespace ServerBlazorEF.Models {
 }
 ```
 
-7. Go to the Startup.cs file. Add the following code to the function ConfigureServices()
+
+
+7. Open the Startup.cs file, import the following namespaces (insert alongisde the rest of the using directives).
+
+```
+using ServerBlazorEF.Models;
+using Microsoft.EntityFrameworkCore;
+```
+
+8. In the Startup.cs file, add the following code to the function ConfigureServices()
 
 ```
 services.AddDbContext<SchoolDbContext>(
     option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 ```
 
-8. Enter the root directory of your project with a terminal. And execute the following command
+9. Enter the root directory of your project with a terminal. And execute the following command
 
 > dotnet-ef migrations add initial_migration
 
 If executed correctly there should be a new folder in your root called Migrations.
 
-9. Next, create the database by running this command in your terminal.
+10. Next, create the database by running this command in your terminal.
 
 > dotnet-ef database update
 
-10. Create a file StudentService.cs in the Data folder.
+11. Create a file StudentService.cs in the Data folder.
 
 ```
 using System.Collections.Generic;
@@ -202,13 +211,13 @@ namespace ServerBlazorEF.Models {
 }
 ```
 
-11. Add the following to the ConfigureServices() method in the Startup.cs file.
+12. Add the following to the ConfigureServices() method in the Startup.cs file.
 
 ```
 services.AddScoped<StudentService>();
 ```
 
-12. In the Pages folder, create a new file Students.razor
+13. In the Pages folder, create a new file Students.razor
 
 ```
 @page "/students"
@@ -359,7 +368,7 @@ services.AddScoped<StudentService>();
 }
 ```
 
-13. Add a navlink to the students page. Open NavMenu.razor in the Shared folder. Enter the following code into ul block.
+14. Add a navlink to the students page. Open NavMenu.razor in the Shared folder. Enter the following code into ul block.
 
 ```
 <li class="nav-item px-3">
@@ -369,4 +378,19 @@ services.AddScoped<StudentService>();
 </li>
 ```
 
-14. Build and run the project again.
+15. Build and run the project again.
+
+---
+
+If you are recreating this app for the second time. Make sure to delete the database files "CollegeDB.mdf" and "CollegeDB_log.ldf" located in your user folder. You will also need the restart the SQL server with the following commands.
+
+> sqllocaldb stop
+> sqllocaldb delete
+
+Alternatively, you may simply give the database file a new name. In appsettings.json change the database name to something else.
+
+```
+"ConnectionStrings": {
+  "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=NEW_NAME;Trusted_Connection=True;MultipleActiveResultSets=true"
+},
+```
