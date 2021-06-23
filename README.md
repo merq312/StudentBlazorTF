@@ -235,8 +235,7 @@ services.AddScoped<StudentService>();
       </tr>
     </thead>
     <tbody>
-      @foreach (var item in students)
-      {
+      @foreach (var item in students) {
         <tr @onclick="(() => Show(item.StudentId))">
           <td>@item.StudentId</td>
           <td>@item.FirstName</td>
@@ -245,7 +244,7 @@ services.AddScoped<StudentService>();
           <td>@item.CourseCode</td>
           <td>@item.CourseTitle</td>
         </tr>
-        }
+      }
     </tbody>
   </table>
 }
@@ -325,7 +324,6 @@ services.AddScoped<StudentService>();
   }
 
   protected async Task Update() {
-
     Student s = new Student() {
       StudentId = studentId,
       FirstName = firstName,
@@ -347,6 +345,7 @@ services.AddScoped<StudentService>();
     await load();
     mode = MODE.None;
   }
+
   protected async Task Show(string id) {
     student = await studentService.GetStudentByIdAsync(id);
     studentId = student.StudentId;
