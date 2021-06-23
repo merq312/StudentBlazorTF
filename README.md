@@ -86,6 +86,30 @@ namespace ServerBlazorEF.Models {
           Email = "merc312@gmail.com",
           CourseCode = "STY1001",
           CourseTitle = "Software Engineering Concepts"
+        },
+        new {
+          StudentId = Guid.NewGuid().ToString(),
+          FirstName = "Pardeep",
+          LastName = "Malhi",
+          Email = "pardeep27malhi@gmail.com",
+          CourseCode = "STY1001",
+          CourseTitle = "Software Engineering Concepts"
+        },
+        new {
+          StudentId = Guid.NewGuid().ToString(),
+          FirstName = "Crispain",
+          LastName = "Ntwali",
+          Email = "ntwalicris@yahoo.fr",
+          CourseCode = "STY1001",
+          CourseTitle = "Software Engineering Concepts"
+        },
+        new {
+          StudentId = Guid.NewGuid().ToString(),
+          FirstName = "Praveen",
+          LastName = "Perera",
+          Email = "praveenshashika@yahoo.com",
+          CourseCode = "STY1001",
+          CourseTitle = "Software Engineering Concepts"
         }
       );
     }
