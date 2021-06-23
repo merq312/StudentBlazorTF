@@ -122,8 +122,6 @@ namespace ServerBlazorEF.Models {
 
 ```
 
-
-
 7. Open the Startup.cs file, import the following namespaces (insert alongisde the rest of the using directives).
 
 ```
