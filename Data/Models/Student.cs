@@ -8,6 +8,10 @@ namespace ServerBlazorEF.Models {
     [Required]
     public string LastName { get; set; }
     [Required]
-    public string School { get; set; }
+    public string Email { get; set; }
+    [Required]
+    public string CourseCode { get; set; }
+    [Required]
+    public string CourseTitle { get; set; }
   }
 }

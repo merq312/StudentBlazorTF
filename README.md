@@ -46,7 +46,11 @@ namespace ServerBlazorEF.Models {
     [Required]
     public string LastName { get; set; }
     [Required]
-    public string School { get; set; }
+    public string Email { get; set; }
+    [Required]
+    public string CourseCode { get; set; }
+    [Required]
+    public string CourseTitle { get; set; }
   }
 }
 ```
@@ -77,24 +81,11 @@ namespace ServerBlazorEF.Models {
       builder.Entity<Student>().HasData(
         new {
           StudentId = Guid.NewGuid().ToString(),
-          FirstName = "Jane",
-          LastName = "Smith",
-          School = "Medicine"
-        }, new {
-          StudentId = Guid.NewGuid().ToString(),
-          FirstName = "John",
-          LastName = "Fisher",
-          School = "Engineering"
-        }, new {
-          StudentId = Guid.NewGuid().ToString(),
-          FirstName = "Pamela",
-          LastName = "Baker",
-          School = "Food Science"
-        }, new {
-          StudentId = Guid.NewGuid().ToString(),
-          FirstName = "Peter",
-          LastName = "Taylor",
-          School = "Mining"
+          FirstName = "Chamila",
+          LastName = "Gunasena",
+          Email = "merc312@gmail.com",
+          CourseCode = "STY1001",
+          CourseTitle = "Software Engineering Concepts"
         }
       );
     }
@@ -157,7 +148,9 @@ namespace ServerBlazorEF.Models {
 
         student.FirstName = s.FirstName;
         student.LastName = s.LastName;
-        student.School = s.School;
+        student.Email = s.Email;
+        student.CourseCode = s.CourseCode;
+        student.CourseTitle = s.CourseTitle;
 
         _context.Students.Update(student);
         await _context.SaveChangesAsync();
@@ -212,7 +205,9 @@ services.AddScoped<StudentService>();
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>School</th>
+        <th>Email</th>
+        <th>Course Code</th>
+        <th>Course Title</th>
       </tr>
     </thead>
     <tbody>
@@ -222,7 +217,9 @@ services.AddScoped<StudentService>();
           <td>@item.StudentId</td>
           <td>@item.FirstName</td>
           <td>@item.LastName</td>
-          <td>@item.School</td>
+          <td>@item.Email</td>
+          <td>@item.CourseCode</td>
+          <td>@item.CourseTitle</td>
         </tr>
         }
     </tbody>
@@ -233,7 +230,9 @@ services.AddScoped<StudentService>();
 {
   <input placeholder="First Name" @bind="@firstName" /><br />
   <input placeholder="Last Name" @bind="@lastName" /><br />
-  <input placeholder="School" @bind="@school" /><br />
+  <input placeholder="Email" @bind="@email" /><br />
+  <input placeholder="Course Code" @bind="@courseCode" /><br />
+  <input placeholder="Course Title" @bind="@courseTitle" /><br />
   <button @onclick="Insert" class="btn btn-warning">Insert</button>
 }
 
@@ -242,7 +241,9 @@ services.AddScoped<StudentService>();
   <input type="hidden" @bind="@studentId" /><br />
   <input placeholder="First Name" @bind="@firstName" /><br />
   <input placeholder="Last Name" @bind="@lastName" /><br />
-  <input placeholder="School" @bind="@school" /><br />
+  <input placeholder="Email" @bind="@email" /><br />
+  <input placeholder="Course Code" @bind="@courseCode" /><br />
+  <input placeholder="Course Title" @bind="@courseTitle" /><br />
   <button @onclick="Update" class="btn btn-primary">Update</button>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <button @onclick="Delete" class="btn btn-danger">Delete</button>
@@ -253,7 +254,9 @@ services.AddScoped<StudentService>();
   string studentId;
   string firstName;
   string lastName;
-  string school;
+  string email;
+  string courseCode;
+  string courseTitle;
 
   private enum MODE { None, Add, EditDelete };
   MODE mode = MODE.None;
@@ -272,7 +275,9 @@ services.AddScoped<StudentService>();
       StudentId = Guid.NewGuid().ToString(),
       FirstName = firstName,
       LastName = lastName,
-      School = school
+      Email = email,
+      CourseCode = courseCode,
+      CourseTitle = courseTitle
     };
 
     await studentService.InsertStudentAsync(s);
@@ -285,7 +290,9 @@ services.AddScoped<StudentService>();
     studentId = string.Empty;
     firstName = string.Empty;
     lastName = string.Empty;
-    school = string.Empty;
+    email = string.Empty;
+    courseCode = string.Empty;
+    courseTitle = string.Empty;
   }
 
   protected void Add() { 
@@ -299,7 +306,9 @@ services.AddScoped<StudentService>();
       StudentId = studentId,
       FirstName = firstName,
       LastName = lastName,
-      School = school
+      Email = email,
+      CourseCode = courseCode,
+      CourseTitle = courseTitle
     };
 
     await studentService.UpdateStudentAsync(studentId, s);
@@ -319,7 +328,9 @@ services.AddScoped<StudentService>();
     studentId = student.StudentId;
     firstName = student.FirstName;
     lastName = student.LastName;
-    school = student.School;
+    email = student.Email;
+    courseCode = student.CourseCode;
+    courseTitle = student.CourseTitle;
     mode = MODE.EditDelete;
   }
 }

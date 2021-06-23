@@ -13,24 +13,11 @@ namespace ServerBlazorEF.Models {
       builder.Entity<Student>().HasData(
         new {
           StudentId = Guid.NewGuid().ToString(),
-          FirstName = "Jane",
-          LastName = "Smith",
-          School = "Medicine"
-        }, new {
-          StudentId = Guid.NewGuid().ToString(),
-          FirstName = "John",
-          LastName = "Fisher",
-          School = "Engineering"
-        }, new {
-          StudentId = Guid.NewGuid().ToString(),
-          FirstName = "Pamela",
-          LastName = "Baker",
-          School = "Food Science"
-        }, new {
-          StudentId = Guid.NewGuid().ToString(),
-          FirstName = "Peter",
-          LastName = "Taylor",
-          School = "Mining"
+          FirstName = "Chamila",
+          LastName = "Gunasena",
+          Email = "merc312@gmail.com",
+          CourseCode = "STY1001",
+          CourseTitle = "Software Engineering Concepts"
         }
       );
     }

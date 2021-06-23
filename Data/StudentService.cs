@@ -33,7 +33,9 @@ namespace ServerBlazorEF.Models {
 
         student.FirstName = s.FirstName;
         student.LastName = s.LastName;
-        student.School = s.School;
+        student.Email = s.Email;
+        student.CourseCode = s.CourseCode;
+        student.CourseTitle = s.CourseTitle;
 
         _context.Students.Update(student);
         await _context.SaveChangesAsync();

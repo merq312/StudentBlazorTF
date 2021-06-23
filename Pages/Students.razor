@@ -16,7 +16,9 @@
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>School</th>
+        <th>Email</th>
+        <th>Course Code</th>
+        <th>Course Title</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +28,9 @@
           <td>@item.StudentId</td>
           <td>@item.FirstName</td>
           <td>@item.LastName</td>
-          <td>@item.School</td>
+          <td>@item.Email</td>
+          <td>@item.CourseCode</td>
+          <td>@item.CourseTitle</td>
         </tr>
         }
     </tbody>
@@ -37,7 +41,9 @@
 {
   <input placeholder="First Name" @bind="@firstName" /><br />
   <input placeholder="Last Name" @bind="@lastName" /><br />
-  <input placeholder="School" @bind="@school" /><br />
+  <input placeholder="Email" @bind="@email" /><br />
+  <input placeholder="Course Code" @bind="@courseCode" /><br />
+  <input placeholder="Course Title" @bind="@courseTitle" /><br />
   <button @onclick="Insert" class="btn btn-warning">Insert</button>
 }
 
@@ -46,7 +52,9 @@
   <input type="hidden" @bind="@studentId" /><br />
   <input placeholder="First Name" @bind="@firstName" /><br />
   <input placeholder="Last Name" @bind="@lastName" /><br />
-  <input placeholder="School" @bind="@school" /><br />
+  <input placeholder="Email" @bind="@email" /><br />
+  <input placeholder="Course Code" @bind="@courseCode" /><br />
+  <input placeholder="Course Title" @bind="@courseTitle" /><br />
   <button @onclick="Update" class="btn btn-primary">Update</button>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <button @onclick="Delete" class="btn btn-danger">Delete</button>
@@ -57,7 +65,9 @@
   string studentId;
   string firstName;
   string lastName;
-  string school;
+  string email;
+  string courseCode;
+  string courseTitle;
 
   private enum MODE { None, Add, EditDelete };
   MODE mode = MODE.None;
@@ -76,7 +86,9 @@
       StudentId = Guid.NewGuid().ToString(),
       FirstName = firstName,
       LastName = lastName,
-      School = school
+      Email = email,
+      CourseCode = courseCode,
+      CourseTitle = courseTitle
     };
 
     await studentService.InsertStudentAsync(s);
@@ -89,7 +101,9 @@
     studentId = string.Empty;
     firstName = string.Empty;
     lastName = string.Empty;
-    school = string.Empty;
+    email = string.Empty;
+    courseCode = string.Empty;
+    courseTitle = string.Empty;
   }
 
   protected void Add() { 
@@ -103,7 +117,9 @@
       StudentId = studentId,
       FirstName = firstName,
       LastName = lastName,
-      School = school
+      Email = email,
+      CourseCode = courseCode,
+      CourseTitle = courseTitle
     };
 
     await studentService.UpdateStudentAsync(studentId, s);
@@ -123,7 +139,9 @@
     studentId = student.StudentId;
     firstName = student.FirstName;
     lastName = student.LastName;
-    school = student.School;
+    email = student.Email;
+    courseCode = student.CourseCode;
+    courseTitle = student.CourseTitle;
     mode = MODE.EditDelete;
   }
 }
