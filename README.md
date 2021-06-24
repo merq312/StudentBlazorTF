@@ -419,10 +419,23 @@ The homepage will appear as follows.
 
 Click on the Students tab to open the Students page.
 
+![Alt text](./Screenshots/vivaldi_i8GK9oC2lt.png)
+
+Clicking on Add will open an input form for adding a new entry.
+
 ![Alt text](./Screenshots/vivaldi_pRo0q3067U.png)
 
-![Alt text](./Screenshots/Ssms_5iIWWIaEaQ.png)
-![Alt text](./Screenshots/Ssms_5iIWWIaEaQ.png)
+Adding a new entry.
+
+![Alt text](./Screenshots/XMrXR3EYa2.png)
+
+The entry is now visible in the table.
+
+![Alt text](./Screenshots/vivaldi_kZQLftHjLV.png)
+
+By selecting an entry, we may either update or delete it.
+
+![Alt text](./Screenshots/vivaldi_iWqFOJRKlS.png)
 
 The database we created can be viewed using Microsoft SQL Server Management Studio. Following are screenshots of the database records.
 
