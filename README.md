@@ -413,9 +413,10 @@ services.AddScoped<StudentService>();
 
 15. Build and run the project again.
 
-The database we created can be viewed using Microsoft Server Management Studio. Following are screenshots of the database records.
+The database we created can be viewed using Microsoft SQL Server Management Studio. Following are screenshots of the database records.
 
-![alt text](./Screenshots/Ssms_5iIWWIaEaQ.png)
+![Microsoft SSMS](./Screenshots/Ssms_5iIWWIaEaQ.png)
+![database entries](./Screenshots/Ssms_fDFcc3yIvP.png)
 
 ---
 
