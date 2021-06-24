@@ -5,15 +5,15 @@
 - Latest .NET version
 - Visual Studio Code (or any editor)
 - SQL Server Express LocalDB (Download SQL Server Express 2019, do a basic installation)
-> https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15
+  > https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15
 - Install Entity Framework CLI using your terminal
-> dotnet tool install --global dotnet-ef
+  > dotnet tool install --global dotnet-ef
 
 ---
 
 ## Instructions
 
-1. Open a terminal window, go to the directory you wish to create the project in, and create a Blazor server app by typing 
+1. Open a terminal window, go to the directory you wish to create the project in, and create a Blazor server app by typing
 
 > dotnet new blazorserver -o StudentBlazorTF
 
@@ -182,7 +182,7 @@ namespace ServerBlazorEF.Models {
 
       public async Task<Student> UpdateStudentAsync(string id, Student s) {
         var student = await _context.Students.FindAsync(id);
-        
+
         if (student == null)
           return null;
 
@@ -200,7 +200,7 @@ namespace ServerBlazorEF.Models {
 
       public async Task<Student> DeleteStudentAsync(string id) {
         var student = await _context.Students.FindAsync(id);
-        
+
         if (student == null)
           return null;
 
@@ -272,7 +272,7 @@ services.AddScoped<StudentService>();
 
 @* If the database is loaded and the add button has been pressed (add mode),
    shows an input form for a new entry. *@
-@if (students != null && mode==MODE.Add) // Insert form 
+@if (students != null && mode==MODE.Add) // Insert form
 {
   <input placeholder="First Name" @bind="@firstName" /><br />
   <input placeholder="Last Name" @bind="@lastName" /><br />
@@ -353,7 +353,7 @@ services.AddScoped<StudentService>();
   }
 
   @* Executed when the user clicks on the Add button. *@
-  protected void Add() { 
+  protected void Add() {
     ClearFields();
     @* Sets the mode to Add *@
     mode = MODE.Add;
@@ -412,6 +412,10 @@ services.AddScoped<StudentService>();
 ```
 
 15. Build and run the project again.
+
+The database we created can be viewed using Microsoft Server Management Studio. Following are screenshots of the database records.
+
+![alt text](./Screenshots/Ssms_5iIWWIaEaQ.png)
 
 ---
 
