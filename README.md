@@ -415,6 +415,7 @@ services.AddScoped<StudentService>();
 
 The database we created can be viewed using Microsoft SQL Server Management Studio. Following are screenshots of the database records.
 
+![Microsoft SSMS](./Screenshots/Ssms_5iIWWIaEaQ.png)
 ![database entries](./Screenshots/Ssms_fDFcc3yIvP.png)
 
 ---
