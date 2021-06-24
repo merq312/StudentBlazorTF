@@ -165,14 +165,17 @@ namespace ServerBlazorEF.Models {
         _context = context;
       }
 
+      // Gets a list of all student entries
       public async Task<List<Student>> GetStudentsAsync() {
         return await _context.Students.ToListAsync();
       }
 
+      // Gets a single student entry by their unique id
       public async Task<Student> GetStudentByIdAsync(string id) {
         return await _context.Students.FindAsync(id);
       }
 
+      // Creates a new student entry
       public async Task<Student> InsertStudentAsync(Student student) {
         _context.Students.Add(student);
         await _context.SaveChangesAsync();
@@ -180,6 +183,7 @@ namespace ServerBlazorEF.Models {
         return student;
       }
 
+      // Updates an existing student entry
       public async Task<Student> UpdateStudentAsync(string id, Student s) {
         var student = await _context.Students.FindAsync(id);
 
@@ -198,6 +202,7 @@ namespace ServerBlazorEF.Models {
         return student;
       }
 
+      // Deletes an entry from the database
       public async Task<Student> DeleteStudentAsync(string id) {
         var student = await _context.Students.FindAsync(id);
 
